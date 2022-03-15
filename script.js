@@ -37,7 +37,7 @@ function jump() {
     }
   }, 20);
 }
-/*
+
 function createCactus() {
   const cactus = document.createElement('div');
   let cactusPosition = 1000;
@@ -68,5 +68,5 @@ function createCactus() {
   setTimeout(createCactus, randomTime);
 }
 
-createCactus(); */
+createCactus();
 document.addEventListener('keyup', handleKeyUp);
