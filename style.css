@@ -1,7 +1,13 @@
 body{
     background: #fafafa;
 }
-  
+
+.container{
+    display: flex;
+    flex-direction: row;  
+    justify-content: center;
+} 
+
 .dino{
     position: absolute;
     bottom: 0;
@@ -16,6 +22,13 @@ body{
     height: 60px;
     bottom: 0;
     background-image: url(cactus.png);
+}
+
+.score{
+    padding: 10px 10px 10px 10px;
+    width: 150px;    
+    height: 40px;
+    border: 2px solid black;
 }
   
 .game-over {
