@@ -8,12 +8,14 @@ let position = 0;
 let score = 0;
 var scoreElement;
 var myMusic;
+var myPonts;
+var myGameOver;
 
 function sound(src) {
   this.sound = document.createElement("audio");
   this.sound.src = src;
   this.sound.setAttribute("preload", "auto");
-  this.sound.setAttribute("controls", "none");
+  this.sound.setAttribute("controls", "auto");
   this.sound.style.display = "none";
   document.body.appendChild(this.sound);
   this.play = function(){
@@ -22,29 +24,32 @@ function sound(src) {
   this.stop = function(){
     this.sound.pause();
   }
-}
+} 
 
-myMusic = new sound("Saga-of-Knight.mp3");
-
+myMusic = new sound("Main_Theme.mp3");
+myGameOver = new sound("Game_Over.mp3");
+myPonts = new sound("Nintendo_Logo.mp3");
+myMusic.play();
 
 function drawScore() {  
-  if(score <= 1){
+  if(score <= 1){    
     scoreElement = document.createElement('h2');
     scoreElement.classList.add('score');
     scoreElement.textContent = "Pontuação: "+score;
     container.appendChild(scoreElement);
+    myPonts.play();    
   }
   else{
     scoreElement.textContent = "Pontuação: "+score;
     container.appendChild(scoreElement);
+    myPonts.play();
   }
 }
 
 function handleKeyUp(event) {
   if (event.keyCode === 32) {
     if (!isJumping) {
-      jump();
-      myMusic.play();
+      jump();      
     }
   }
 }
@@ -96,8 +101,9 @@ function createCactus() {
       // Game over
       clearInterval(leftTimer);
       isGameOver = true;
+      myMusic.stop();      
       document.body.innerHTML = '<h1 class="game-over"> <<< Fim de jogo >>>> </h1>';
-      sound.stop();
+      myGameOver.play();
     } else {
       cactusPosition -= 20;
       cactus.style.left = cactusPosition + 'px';
